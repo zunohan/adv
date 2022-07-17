@@ -1,7 +1,7 @@
 
 FROM node:16-alpine
 WORKDIR /adv
-COPY package.json ./
+COPY . .
 RUN npm install
 COPY dist ./dist
 RUN npm install pm2@latest -g
