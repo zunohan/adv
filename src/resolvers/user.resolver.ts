@@ -1,6 +1,6 @@
 import { Arg, Field, InputType, Mutation, Query, Resolver, UseMiddleware } from "type-graphql"
 import { UserModel } from "../entities/user.model"
-import authMiddleware from "../middlewares/auth.middleware"
+// import authMiddleware from "../middlewares/auth.middleware"
 import { catchErr } from "../types/response.type"
 import { UserArrResponse, UserObjectResponse } from "../types/user.type"
 

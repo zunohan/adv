@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const apollo_server_express_1 = require("apollo-server-express");
-const user_model_1 = require("../entities/user.model");
 const Web3Token = require("web3-token");
 const authMiddleware = async ({ context }, next) => {
     try {
@@ -10,9 +9,9 @@ const authMiddleware = async ({ context }, next) => {
         if (!authHeader)
             throw new apollo_server_express_1.AuthenticationError("Not authen!...");
         console.log(authHeader);
-        const { address, body } = await Web3Token.verify(token);
+        // const { address, body } = await Web3Token.verify(token)
         // if (!address) throw new AuthenticationError("You need to perform Token!...")
-        context.req.address = await user_model_1.UserModel.findOne({ address });
+        // context.req.address = await UserModel.findOne({ address })
         return next();
     }
     catch (error) {

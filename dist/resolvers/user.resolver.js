@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const user_model_1 = require("../entities/user.model");
+// import authMiddleware from "../middlewares/auth.middleware"
 const response_type_1 = require("../types/response.type");
 const user_type_1 = require("../types/user.type");
 const Web3Token = require("web3-token");
