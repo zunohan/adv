@@ -17,7 +17,7 @@ let PingResolver = class PingResolver {
             return "PING PONG";
         }
         catch (error) {
-            return "NO PING PONG";
+            return "NO PING PONGAAA";
         }
     }
     async pong() {

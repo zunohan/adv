@@ -7,7 +7,7 @@ export class PingResolver {
         try {
             return "PING PONG"
         } catch (error) {
-            return "NO PING PONG"
+            return "NO PING PONGAAA"
         }
     }
 
