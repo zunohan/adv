@@ -20,6 +20,14 @@ let PingResolver = class PingResolver {
             return "NO PING PONG";
         }
     }
+    async pong() {
+        try {
+            return "PING PONG - ping pong";
+        }
+        catch (error) {
+            return "NO PING PONG";
+        }
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => String),
@@ -27,6 +35,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], PingResolver.prototype, "ping", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => String),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PingResolver.prototype, "pong", null);
 PingResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], PingResolver);
