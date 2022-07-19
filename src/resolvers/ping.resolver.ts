@@ -10,4 +10,13 @@ export class PingResolver {
             return "NO PING PONG"
         }
     }
+
+    @Query(() => String)
+    async pong() {
+        try {
+            return "PING PONG - ping pong"
+        } catch (error) {
+            return "NO PING PONG"
+        }
+    }
 }
