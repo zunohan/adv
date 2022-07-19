@@ -97,3 +97,5 @@ export class AdModel extends BaseEntity {
     @Field()
     updatedAt: Date
 }
+
+
