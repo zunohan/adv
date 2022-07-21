@@ -12,4 +12,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: 22
-        script: whoami
+        script: |
+          cd code/adv
+          git pull
+          docker build -t adv:$GITHUB_RUN_NUMBER .
+          docker stop adv
+          docker rm adv
+          docker run --name adv -p 6969:6969 adv:$GITHUB_RUN_NUMBER
