@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CampaignModel = void 0;
 const type_graphql_1 = require("type-graphql");
 const typeorm_1 = require("typeorm");
-const class_validator_1 = require("class-validator");
 const enum_type_1 = require("../types/enum.type");
 const user_model_1 = require("./user.model");
 const ad_model_1 = require("./ad.model");
@@ -31,8 +30,6 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({ type: "varchar", unique: true }),
     (0, type_graphql_1.Field)(() => String),
-    (0, class_validator_1.MinLength)(4),
-    (0, class_validator_1.MaxLength)(50),
     __metadata("design:type", String)
 ], CampaignModel.prototype, "name", void 0);
 __decorate([
@@ -40,11 +37,6 @@ __decorate([
     (0, type_graphql_1.Field)(() => String),
     __metadata("design:type", String)
 ], CampaignModel.prototype, "status", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "int", default: 0 }),
-    (0, type_graphql_1.Field)(() => type_graphql_1.Int),
-    __metadata("design:type", Number)
-], CampaignModel.prototype, "totalCampaign", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "int", default: 0 }),
     (0, type_graphql_1.Field)(() => type_graphql_1.Int),

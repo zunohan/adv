@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 dotenv.config({ path: ".env" })
 import "reflect-metadata"
 import initDatabase from "./utils/initDB"
-import { ApolloServer } from "apollo-server-express"
+import { ApolloError, ApolloServer } from "apollo-server-express"
 import { buildSchema } from "type-graphql"
 import { PingResolver } from "./resolvers/ping.resolver"
 import { UserResolver } from "./resolvers/user.resolver"
@@ -17,13 +17,15 @@ const startServer = async () => {
         await initDatabase() // init DB
         const schema = await buildSchema({
             resolvers: [PingResolver, UserResolver, CampaignResolver, AdResolver],
-            validate: false,
         })
 
         const server = new ApolloServer({
             schema,
             csrfPrevention: false,
             context: ({ req, res }) => ({ req, res }),
+            formatError: ({ message, extensions }) => {
+                return { success: false, message, extensions }
+            },
         })
         await server.start()
         const app: Express = express()

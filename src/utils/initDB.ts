@@ -9,7 +9,7 @@ const initDatabase = async () => {
             type: "postgres",
             url: process.env.DB_URL,
             synchronize: true,
-            entities: [UserModel, CampaignModel, AdModel],
+            entities: [UserModel, CampaignModel, AdModel]
         })
         await AppDataSource.initialize()
         console.log("🚀 Connect to POSTGRESQL inside docker 🚀")

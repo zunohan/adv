@@ -30,12 +30,6 @@ __decorate([
 ], UserModel.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "varchar" }),
-    (0, class_validator_1.MinLength)(6),
-    (0, class_validator_1.MaxLength)(20),
-    __metadata("design:type", String)
-], UserModel.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "varchar" }),
     (0, type_graphql_1.Field)({ nullable: true }),
     (0, class_validator_1.MinLength)(4),
     (0, class_validator_1.MaxLength)(20),
@@ -50,7 +44,18 @@ __decorate([
     (0, typeorm_1.Column)({ type: "text", unique: true }),
     (0, type_graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], UserModel.prototype, "wallet", void 0);
+], UserModel.prototype, "address", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "enum", enum: enum_type_1.UserStatus, default: enum_type_1.UserStatus.Active }),
+    (0, type_graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], UserModel.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "int", default: 0 }),
+    (0, type_graphql_1.Field)(() => type_graphql_1.Int),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], UserModel.prototype, "totalCampaign", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => campaign_model_1.CampaignModel, (campaign) => campaign.user, {
         eager: true,

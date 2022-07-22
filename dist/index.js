@@ -20,12 +20,14 @@ const startServer = async () => {
         await (0, initDB_1.default)(); // init DB
         const schema = await (0, type_graphql_1.buildSchema)({
             resolvers: [ping_resolver_1.PingResolver, user_resolver_1.UserResolver, campaign_resolver_1.CampaignResolver, ad_resolver_1.AdResolver],
-            validate: false,
         });
         const server = new apollo_server_express_1.ApolloServer({
             schema,
             csrfPrevention: false,
             context: ({ req, res }) => ({ req, res }),
+            formatError: ({ message, extensions }) => {
+                return { success: false, message, extensions };
+            },
         });
         await server.start();
         const app = (0, express_1.default)();

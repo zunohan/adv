@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.catchErr = exports.IResponse = void 0;
+exports.IResponse = void 0;
 const type_graphql_1 = require("type-graphql");
 let IResponse = class IResponse {
 };
@@ -25,9 +25,4 @@ IResponse = __decorate([
     (0, type_graphql_1.InterfaceType)()
 ], IResponse);
 exports.IResponse = IResponse;
-// error
-exports.catchErr = {
-    success: false,
-    msg: "Bad request.....",
-};
 //# sourceMappingURL=response.type.js.map

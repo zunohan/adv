@@ -33,7 +33,7 @@ __decorate([
     (0, typeorm_1.Column)({ type: "enum", enum: enum_type_1.BuyingModel, default: enum_type_1.BuyingModel.CPM }),
     (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
-], AdModel.prototype, "buyingModel", void 0);
+], AdModel.prototype, "buying_model", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, type_graphql_1.Field)(),
@@ -45,8 +45,8 @@ __decorate([
 ], AdModel.prototype, "budget", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, type_graphql_1.Field)(() => type_graphql_1.Int),
-    __metadata("design:type", Number)
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
 ], AdModel.prototype, "bidding", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "enum", enum: enum_type_1.Format }),
@@ -54,8 +54,8 @@ __decorate([
     __metadata("design:type", String)
 ], AdModel.prototype, "format", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text" }),
-    (0, type_graphql_1.Field)(),
+    (0, typeorm_1.Column)({ type: "text", nullable: true }),
+    (0, type_graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], AdModel.prototype, "options", void 0);
 __decorate([
@@ -69,8 +69,8 @@ __decorate([
     __metadata("design:type", String)
 ], AdModel.prototype, "schedule", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text" }),
-    (0, type_graphql_1.Field)(),
+    (0, typeorm_1.Column)({ type: "text", nullable: true }),
+    (0, type_graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], AdModel.prototype, "targeting", void 0);
 __decorate([

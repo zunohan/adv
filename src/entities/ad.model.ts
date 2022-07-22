@@ -28,7 +28,7 @@ export class AdModel extends BaseEntity {
 
     @Column({ type: "enum", enum: BuyingModel, default: BuyingModel.CPM })
     @Field()
-    buyingModel: string
+    buying_model: string
 
     @Column()
     @Field()
@@ -38,15 +38,15 @@ export class AdModel extends BaseEntity {
     budget: string // "500:lifetime"
 
     @Column()
-    @Field(() => Int)
-    bidding: number
+    @Field()
+    bidding: string // "0.5"
 
     @Column({ type: "enum", enum: Format })
     @Field()
     format: string // "feed" | "display" | "vast" | "extention",
 
-    @Column({ type: "text" })
-    @Field()
+    @Column({ type: "text", nullable: true })
+    @Field({ nullable: true })
     options?: string
 
     @Column({ type: "varchar" })
@@ -57,8 +57,8 @@ export class AdModel extends BaseEntity {
     @Field()
     schedule: string // "{starttime}:{endtime}" ---> "62346234:05406546"
 
-    @Column({ type: "text" })
-    @Field()
+    @Column({ type: "text", nullable: true })
+    @Field({ nullable: true })
     targeting?: string
 
     // targeting: {
@@ -97,5 +97,3 @@ export class AdModel extends BaseEntity {
     @Field()
     updatedAt: Date
 }
-
-

@@ -10,7 +10,6 @@ import {
     OneToMany,
     JoinColumn,
 } from "typeorm"
-import { MaxLength, MinLength } from "class-validator"
 import { CampaignObjective, Status } from "../types/enum.type"
 import { UserModel } from "./user.model"
 import { AdModel } from "./ad.model"
@@ -28,17 +27,11 @@ export class CampaignModel extends BaseEntity {
 
     @Column({ type: "varchar", unique: true })
     @Field(() => String)
-    @MinLength(4)
-    @MaxLength(50)
     name: string
 
     @Column({ type: "enum", enum: Status, default: Status.Pending })
     @Field(() => String)
     status: Status
-
-    @Column({ type: "int", default: 0 })
-    @Field(() => Int)
-    totalCampaign: number
 
     @Column({ type: "int", default: 0 })
     @Field(() => Int)

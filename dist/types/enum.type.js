@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Format = exports.BuyingModel = exports.Status = exports.CampaignObjective = exports.Role = void 0;
+exports.Format = exports.BuyingModel = exports.Status = exports.CampaignObjective = exports.UserStatus = exports.Role = void 0;
 const type_graphql_1 = require("type-graphql");
 // user role
 var Role;
@@ -8,6 +8,11 @@ var Role;
     Role["Admin"] = "Admin";
     Role["Advertiser"] = "Advertiser";
 })(Role = exports.Role || (exports.Role = {}));
+var UserStatus;
+(function (UserStatus) {
+    UserStatus["Active"] = "Active";
+    UserStatus["Inactive"] = "Inactive";
+})(UserStatus = exports.UserStatus || (exports.UserStatus = {}));
 // campaign objective
 var CampaignObjective;
 (function (CampaignObjective) {
@@ -40,6 +45,10 @@ var Format;
 (0, type_graphql_1.registerEnumType)(Role, {
     name: "User role",
     description: "Admin/Adv/Pub",
+});
+(0, type_graphql_1.registerEnumType)(UserStatus, {
+    name: "User status",
+    description: "Active/Inactive",
 });
 (0, type_graphql_1.registerEnumType)(BuyingModel, {
     name: "Buying model for Adv",

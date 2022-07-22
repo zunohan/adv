@@ -6,6 +6,11 @@ export enum Role {
     Advertiser = "Advertiser",
 }
 
+export enum UserStatus {
+    Active = "Active",
+    Inactive = "Inactive",
+}
+
 // campaign objective
 export enum CampaignObjective {
     Traffic = "Traffic",
@@ -38,6 +43,11 @@ export enum Format {
 registerEnumType(Role, {
     name: "User role",
     description: "Admin/Adv/Pub",
+})
+
+registerEnumType(UserStatus, {
+    name: "User status",
+    description: "Active/Inactive",
 })
 
 registerEnumType(BuyingModel, {

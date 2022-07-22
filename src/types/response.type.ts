@@ -1,3 +1,4 @@
+import { ApolloError } from "apollo-server-express"
 import { Field, InterfaceType } from "type-graphql"
 
 @InterfaceType()
@@ -7,10 +8,4 @@ export abstract class IResponse {
 
     @Field({ nullable: true })
     msg?: string
-}
-
-// error
-export const catchErr = {
-    success: false,
-    msg: "Bad request.....",
 }

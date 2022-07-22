@@ -16,9 +16,25 @@ exports.UserResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const user_model_1 = require("../entities/user.model");
 // import authMiddleware from "../middlewares/auth.middleware"
-const response_type_1 = require("../types/response.type");
 const user_type_1 = require("../types/user.type");
-const Web3Token = require("web3-token");
+const handleError_1 = require("../utils/handleError");
+let SignUpInput = class SignUpInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], SignUpInput.prototype, "address", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], SignUpInput.prototype, "email", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], SignUpInput.prototype, "name", void 0);
+SignUpInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], SignUpInput);
 let LoginInput = class LoginInput {
 };
 __decorate([
@@ -39,22 +55,20 @@ let UserResolver = class UserResolver {
             return {
                 success: true,
                 msg: "",
-                data: user
+                data: user,
             };
         }
         catch (error) {
-            return response_type_1.catchErr;
+            return (0, handleError_1.catchErr)();
         }
     }
-    // @UseMiddleware(authMiddleware)
-    async createUser() {
+    async seedUser({ address, email, name }) {
         try {
-            const user = new user_model_1.UserModel();
-            user.email = "pnlan1406@gmail.com";
-            user.password = "111111";
-            user.name = "ZUNO";
-            user.wallet = "0xa9a970dFbA2BE332683F2C88557eea0a607A5486";
-            await user.save();
+            const user = await user_model_1.UserModel.create({
+                email: "pnlan1406@gmail.com",
+                name: "ZUNO",
+                address: "0xa9a970dFbA2BE332683F2C88557eea0a607A5486",
+            }).save();
             return {
                 success: true,
                 msg: "You have created a new one!!!!!",
@@ -62,11 +76,29 @@ let UserResolver = class UserResolver {
             };
         }
         catch (error) {
-            return response_type_1.catchErr;
+            return (0, handleError_1.catchErr)();
         }
     }
-    // @UseMiddleware(authMiddleware)
-    async login({ email, address }) {
+    async signupUser({ address, email, name }) {
+        try {
+            const existingUser = await user_model_1.UserModel.findOneBy({ address });
+            if (existingUser)
+                return {
+                    success: false,
+                    msg: "Your address wallet is existed!",
+                };
+            const user = await user_model_1.UserModel.create({ address, email, name }).save();
+            return {
+                success: true,
+                msg: "You have created a new one!!!!!",
+                data: user,
+            };
+        }
+        catch (error) {
+            return (0, handleError_1.catchErr)();
+        }
+    }
+    async loginUser({ email, address }) {
         try {
             return {
                 success: true,
@@ -74,7 +106,7 @@ let UserResolver = class UserResolver {
             };
         }
         catch (error) {
-            return response_type_1.catchErr;
+            return (0, handleError_1.catchErr)();
         }
     }
 };
@@ -86,17 +118,25 @@ __decorate([
 ], UserResolver.prototype, "getUser", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => user_type_1.UserObjectResponse, { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)("SignUpInput")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [SignUpInput]),
     __metadata("design:returntype", Promise)
-], UserResolver.prototype, "createUser", null);
+], UserResolver.prototype, "seedUser", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => user_type_1.UserObjectResponse, { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)("SignUpInput")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [SignUpInput]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "signupUser", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => user_type_1.UserObjectResponse, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)("LoginInput")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [LoginInput]),
     __metadata("design:returntype", Promise)
-], UserResolver.prototype, "login", null);
+], UserResolver.prototype, "loginUser", null);
 UserResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], UserResolver);

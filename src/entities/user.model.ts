@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from "type-graphql"
-import { IsEmail, MaxLength, MinLength } from "class-validator"
+import { IsEmail, MaxLength, Min, MinLength } from "class-validator"
 import { CampaignModel } from "./campaign.model"
-import { Role } from "../types/enum.type"
+import { Role, UserStatus } from "../types/enum.type"
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity("adv_user")
@@ -17,11 +17,6 @@ export class UserModel extends BaseEntity {
     email: string
 
     @Column({ type: "varchar" })
-    @MinLength(6)
-    @MaxLength(20)
-    password: string
-
-    @Column({ type: "varchar" })
     @Field({ nullable: true })
     @MinLength(4)
     @MaxLength(20)
@@ -33,7 +28,16 @@ export class UserModel extends BaseEntity {
 
     @Column({ type: "text", unique: true })
     @Field(() => String)
-    wallet: string
+    address: string
+
+    @Column({ type: "enum", enum: UserStatus, default: UserStatus.Active })
+    @Field(() => String)
+    status: UserStatus
+
+    @Column({ type: "int", default: 0 })
+    @Field(() => Int)
+    @Min(0)
+    totalCampaign: number
 
     @OneToMany(() => CampaignModel, (campaign: CampaignModel) => campaign.user, {
         eager: true,
