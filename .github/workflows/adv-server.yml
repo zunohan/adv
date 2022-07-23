@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using password
-      uses: appleboy/drone-ssh@1.6.4
+      uses: supnobita/ssh-action@master
       with:
         host: 3.127.247.73
         username: ubuntu
