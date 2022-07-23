@@ -8,3 +8,4 @@ RUN yarn
 RUN yarn build
 
 EXPOSE 6969
+CMD ["node", "dist/index.js"]
