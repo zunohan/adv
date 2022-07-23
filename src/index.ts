@@ -3,14 +3,14 @@ import dotenv from "dotenv"
 dotenv.config({ path: ".env" })
 import "reflect-metadata"
 import initDatabase from "./utils/initDB"
-import { ApolloError, ApolloServer } from "apollo-server-express"
+import { ApolloServer } from "apollo-server-express"
 import { buildSchema } from "type-graphql"
 import { PingResolver } from "./resolvers/ping.resolver"
 import { UserResolver } from "./resolvers/user.resolver"
 import { CampaignResolver } from "./resolvers/campaign.resolver"
 import { AdResolver } from "./resolvers/ad.resolver"
 
-const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.js")
+// const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.js")
 
 const startServer = async () => {
     try {

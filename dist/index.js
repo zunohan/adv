@@ -14,7 +14,7 @@ const ping_resolver_1 = require("./resolvers/ping.resolver");
 const user_resolver_1 = require("./resolvers/user.resolver");
 const campaign_resolver_1 = require("./resolvers/campaign.resolver");
 const ad_resolver_1 = require("./resolvers/ad.resolver");
-const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.js");
+// const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.js")
 const startServer = async () => {
     try {
         await (0, initDB_1.default)(); // init DB
