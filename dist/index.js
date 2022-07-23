@@ -31,7 +31,7 @@ const startServer = async () => {
         });
         await server.start();
         const app = (0, express_1.default)();
-        // app.use(graphqlUploadExpress())
+        // app.use(graphqlUploadExpress()) // upload file
         app.use("/public", express_1.default.static("upload")); // change upload -> public path
         server.applyMiddleware({ app, path: "/gql/v1" });
         const PORT = process.env.PORT;

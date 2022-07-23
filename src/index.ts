@@ -30,7 +30,7 @@ const startServer = async () => {
         await server.start()
         const app: Express = express()
 
-        // app.use(graphqlUploadExpress())
+        // app.use(graphqlUploadExpress()) // upload file
 
         app.use("/public", express.static("upload")) // change upload -> public path
 
