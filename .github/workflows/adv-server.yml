@@ -6,11 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
+      uses: appleboy/drone-ssh@master
       with:
         host: 3.127.247.73
         username: ubuntu
-        key: ${{ secrets.ADV_DADS_SECRET }}
+        key: ${{ secrets.ADV_DEV_SECRET }}
         port: 22
         script: |
           cd code/adv
