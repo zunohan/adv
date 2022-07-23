@@ -15,7 +15,7 @@ jobs:
         script: |
           cd code/
           rm -rf adv/
-          git clone git@github.com:zunohan/adv.git
+          git clone https://${{ secrets.ADV_DEV_TOKEN_SSH }}@github.com/zunohan/adv.git
           cd adv
           docker build -t adv:$GITHUB_RUN_NUMBER .
           docker stop adv || echo "OK"
