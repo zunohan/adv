@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-// dotenv.config({ path: ".env.development" })
-dotenv_1.default.config({ path: ".env" });
+process.env.NODE_ENV === "development"
+    ? dotenv_1.default.config({ path: ".env.development" })
+    : dotenv_1.default.config({ path: ".env" });
 require("reflect-metadata");
 const initDB_1 = __importDefault(require("./utils/initDB"));
 const apollo_server_express_1 = require("apollo-server-express");

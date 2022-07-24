@@ -5,7 +5,6 @@ const user_model_1 = require("../entities/user.model");
 const campaign_model_1 = require("../entities/campaign.model");
 const ad_model_1 = require("../entities/ad.model");
 const initDatabase = async () => {
-    console.log(process.env.DB_URL);
     try {
         const AppDataSource = new typeorm_1.DataSource({
             type: "postgres",

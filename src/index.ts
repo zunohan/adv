@@ -1,7 +1,9 @@
 import express, { Express } from "express"
 import dotenv from "dotenv"
-// dotenv.config({ path: ".env.development" })
-dotenv.config({ path: ".env" })
+process.env.NODE_ENV === "development"
+    ? dotenv.config({ path: ".env.development" })
+    : dotenv.config({ path: ".env" })
+
 import "reflect-metadata"
 import initDatabase from "./utils/initDB"
 import { ApolloServer } from "apollo-server-express"

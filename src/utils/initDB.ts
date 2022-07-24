@@ -4,7 +4,6 @@ import { CampaignModel } from "../entities/campaign.model"
 import { AdModel } from "../entities/ad.model"
 
 const initDatabase = async () => {
-    console.log(process.env.DB_URL)
     try {
         const AppDataSource = new DataSource({
             type: "postgres",
