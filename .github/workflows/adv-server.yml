@@ -1,5 +1,5 @@
 name: remote ssh command
-on: [push]
+on: [workflow_dispatch]
 jobs:
   build:
     name: Build
@@ -8,7 +8,7 @@ jobs:
     - name: executing remote ssh commands using password
       uses: supnobita/ssh-action@master
       with:
-        host: 3.127.247.73
+        host: ec2-3-127-247-73.eu-central-1.compute.amazonaws.com
         username: ubuntu
         key: ${{ secrets.ADV_DEV_SECRET }}
         port: 22
