@@ -39,7 +39,8 @@ const startServer = async () => {
         console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath} 🚀`);
     }
     catch (error) {
-        process.exit(1);
+        console.log(error);
+        // process.exit(1)
     }
 };
 startServer();

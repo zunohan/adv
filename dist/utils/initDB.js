@@ -17,7 +17,8 @@ const initDatabase = async () => {
     }
     catch (error) {
         console.log("🚀 POSTGRESQL failed 🚀");
-        process.exit(1);
+        console.log(error);
+        // process.exit(1)
     }
 };
 exports.default = initDatabase;

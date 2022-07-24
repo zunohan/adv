@@ -15,7 +15,8 @@ const initDatabase = async () => {
         console.log("🚀 Connect to POSTGRESQL inside docker 🚀")
     } catch (error) {
         console.log("🚀 POSTGRESQL failed 🚀")
-        process.exit(1)
+        console.log(error)
+        // process.exit(1)
     }
 }
 
