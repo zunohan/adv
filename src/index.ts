@@ -40,8 +40,7 @@ const startServer = async () => {
         await new Promise<void>((r) => app.listen({ port: PORT }, r))
         console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath} 🚀`)
     } catch (error) {
-        console.log(error)
-        // process.exit(1)
+        process.exit(1)
     }
 }
 startServer()
