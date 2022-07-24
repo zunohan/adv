@@ -8,9 +8,14 @@ const initDatabase = async () => {
     try {
         const AppDataSource = new typeorm_1.DataSource({
             type: "postgres",
-            url: process.env.DB_URL,
+            host: process.env.DB_HOST,
+            port: parseInt(process.env.DB_PORT),
+            username: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            // url: process.env.DB_URL,
             synchronize: true,
-            entities: [user_model_1.UserModel, campaign_model_1.CampaignModel, ad_model_1.AdModel]
+            entities: [user_model_1.UserModel, campaign_model_1.CampaignModel, ad_model_1.AdModel],
         });
         await AppDataSource.initialize();
         console.log("🚀 Connect to POSTGRESQL inside docker 🚀");
