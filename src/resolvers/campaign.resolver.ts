@@ -19,7 +19,6 @@ class CreateCampaignInput {
 @Resolver()
 export class CampaignResolver {
     // query
-
     @Query(() => CampaignArrResponse, { nullable: true })
     @UseMiddleware(authMiddleware)
     async getCampaigns(@Ctx() { req: { user_id } }: IContext) {
