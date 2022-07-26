@@ -34,7 +34,6 @@ const authMiddleware: MiddlewareFn<IContext> = async ({ context }, next: NextFn)
         const address: string = "0xa9a970dFbA2BE332683F2C88557eea0a607A5486"
 
         const user = await UserModel.findOneBy({ address })
-        console.log(user)
         if (!user) throw new AuthenticationError("Please sign up your wallet first to lo")
 
         context.req.user_id = user.id

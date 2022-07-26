@@ -15,7 +15,6 @@ const authMiddleware = async ({ context }, next) => {
         // if (!address || !body) throw new AuthenticationError("You need to perform Token!...")
         const address = "0xa9a970dFbA2BE332683F2C88557eea0a607A5486";
         const user = await user_model_1.UserModel.findOneBy({ address });
-        console.log(user);
         if (!user)
             throw new apollo_server_express_1.AuthenticationError("Please sign up your wallet first to lo");
         context.req.user_id = user.id;

@@ -1,5 +1,5 @@
 import { Arg, Ctx, Field, InputType, Mutation, Query, Resolver, UseMiddleware } from "type-graphql"
-import { Length, validate } from "class-validator"
+import { Length } from "class-validator"
 import { CampaignArrResponse, CampaignObjectResponse } from "../types/campaign.type"
 import { CampaignModel } from "../entities/campaign.model"
 import authMiddleware, { IContext } from "../middlewares/auth.middleware"
