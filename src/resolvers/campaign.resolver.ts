@@ -20,7 +20,7 @@ class CreateCampaignInput {
 export class CampaignResolver {
     // query
     @Query(() => CampaignArrResponse, { nullable: true })
-    @UseMiddleware(authMiddleware)
+    // @UseMiddleware(authMiddleware)
     async getCampaigns(@Ctx() { req: { user_id } }: IContext) {
         try {
             const campaigns = await CampaignModel.find({
@@ -38,7 +38,7 @@ export class CampaignResolver {
 
     // mutation
     @Mutation(() => CampaignObjectResponse, { nullable: true }) // create new campaign
-    @UseMiddleware(authMiddleware)
+    // @UseMiddleware(authMiddleware)
     async createCampaign(
         @Arg("CreateCampaignInput")
         { objective, name }: CreateCampaignInput,
@@ -58,7 +58,7 @@ export class CampaignResolver {
 
             return {
                 success: true,
-                msg: "Successfully create new campaign!",
+                msg: "Successfully create a new campaign!",
                 data: campaign,
             }
         } catch (error) {

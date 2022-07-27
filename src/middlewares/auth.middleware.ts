@@ -41,7 +41,7 @@ const authMiddleware: MiddlewareFn<IContext> = async ({ context }, next: NextFn)
 
         return next()
     } catch (error) {
-        throw new AuthenticationError("Bad request!...")
+        throw new AuthenticationError("You have no access...")
     }
 }
 

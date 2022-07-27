@@ -68,7 +68,7 @@ let CampaignResolver = class CampaignResolver {
             ]);
             return {
                 success: true,
-                msg: "Successfully create new campaign!",
+                msg: "Successfully create a new campaign!",
                 data: campaign,
             };
         }
