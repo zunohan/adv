@@ -1,7 +1,19 @@
-import { Arg, Field, InputType, Int, Mutation, Query, Resolver } from "type-graphql"
+import {
+    Arg,
+    Ctx,
+    Field,
+    InputType,
+    Int,
+    Mutation,
+    Query,
+    Resolver,
+    UseMiddleware,
+} from "type-graphql"
+import { AdModel } from "../entities/ad.model"
+import { CampaignModel } from "../entities/campaign.model"
+import authMiddleware, { IContext } from "../middlewares/auth.middleware"
 import { AdObjectResponse } from "../types/ad.type"
 import { catchErr } from "../utils/handleError"
-
 
 @InputType()
 class CreateAdByCampaignInPut {
@@ -27,7 +39,7 @@ class CreateAdByCampaignInPut {
     format: string
 
     @Field()
-    option?: string
+    options?: string
 
     @Field()
     freCapping: string
@@ -51,7 +63,8 @@ export class AdResolver {
         }
     }
 
-    @Mutation(() => AdObjectResponse)
+    @Mutation(() => AdObjectResponse) // create new ad
+    @UseMiddleware(authMiddleware)
     async createAdByCampaign(
         @Arg("CreateAdByCampaignInPut")
         {
@@ -62,11 +75,12 @@ export class AdResolver {
             budget,
             bidding,
             format,
-            option,
+            options,
             freCapping,
             schedule,
             targeting,
-        }: CreateAdByCampaignInPut
+        }: CreateAdByCampaignInPut,
+        @Ctx() { req: { user_id } }: IContext
     ): Promise<AdObjectResponse> {
         try {
             console.log({
@@ -77,14 +91,38 @@ export class AdResolver {
                 budget,
                 bidding,
                 format,
-                option,
+                options,
                 freCapping,
                 schedule,
                 targeting,
             })
+            const existedAd = await AdModel.findOneBy({ name })
+            if (existedAd) return catchErr("Ad name is existed. Please re-input with another...")
+
+            const ad = AdModel.create({
+                name,
+                buying_model: buyingModel,
+                target_url: targetUrl,
+                budget,
+                bidding,
+                format,
+                options,
+                fre_capping: freCapping,
+                schedule,
+                targeting,
+                campaign_id: campaignId,
+            })
+
+            const campaign = await CampaignModel.findOneBy({ id: campaignId })
+            await Promise.all([
+                ad.save(),
+                CampaignModel.update({ id: campaignId }, { totalAd: campaign?.totalAd! + 1 }),
+            ])
+
             return {
                 success: true,
                 msg: "Successfully create new Ad",
+                data: ad
             }
         } catch (error) {
             return catchErr()

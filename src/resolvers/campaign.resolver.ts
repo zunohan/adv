@@ -47,7 +47,7 @@ export class CampaignResolver {
         try {
             const existedCampaign = await CampaignModel.findOneBy({ name })
             if (existedCampaign)
-                return catchErr("Campaign name is existed. Please re-input with another name!")
+                return catchErr("Campaign name is existed. Please re-input with another...")
 
             const campaign = CampaignModel.create({ objective, name, user_id })
             const user = await UserModel.findOneBy({ id: user_id })
