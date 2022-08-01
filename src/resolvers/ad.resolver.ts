@@ -119,7 +119,6 @@ export class AdResolver {
                 CampaignModel.update({ id: campaignId }, { totalAd: campaign?.totalAd! + 1 }),
             ])
 
-
             return {
                 success: true,
                 msg: "Successfully create new Ad",
