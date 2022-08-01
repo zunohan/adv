@@ -18,7 +18,7 @@ const initDatabase = async () => {
             entities: [user_model_1.UserModel, campaign_model_1.CampaignModel, ad_model_1.AdModel],
         });
         await AppDataSource.initialize();
-        console.log("🚀 Connect to POSTGRESQL inside docker 🚀");
+        console.log("🚀 Connect to POSTGRESQL - ADV inside docker 🚀");
     }
     catch (error) {
         console.log("🚀 POSTGRESQL failed 🚀");

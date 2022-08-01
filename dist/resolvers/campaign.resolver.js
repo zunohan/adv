@@ -59,7 +59,7 @@ let CampaignResolver = class CampaignResolver {
         try {
             const existedCampaign = await campaign_model_1.CampaignModel.findOneBy({ name });
             if (existedCampaign)
-                return (0, handleError_1.catchErr)("Campaign name is existed. Please re-input with another name!");
+                return (0, handleError_1.catchErr)("Campaign name is existed. Please re-input with another...");
             const campaign = campaign_model_1.CampaignModel.create({ objective, name, user_id });
             const user = await user_model_1.UserModel.findOneBy({ id: user_id });
             await Promise.all([

@@ -83,19 +83,19 @@ export class AdResolver {
         @Ctx() { req: { user_id } }: IContext
     ): Promise<AdObjectResponse> {
         try {
-            console.log({
-                campaignId,
-                name,
-                buyingModel,
-                targetUrl,
-                budget,
-                bidding,
-                format,
-                options,
-                freCapping,
-                schedule,
-                targeting,
-            })
+            // console.log({
+            //     campaignId,
+            //     name,
+            //     buyingModel,
+            //     targetUrl,
+            //     budget,
+            //     bidding,
+            //     format,
+            //     options,
+            //     freCapping,
+            //     schedule,
+            //     targeting,
+            // })
             const existedAd = await AdModel.findOneBy({ name })
             if (existedAd) return catchErr("Ad name is existed. Please re-input with another...")
 
@@ -118,6 +118,7 @@ export class AdResolver {
                 ad.save(),
                 CampaignModel.update({ id: campaignId }, { totalAd: campaign?.totalAd! + 1 }),
             ])
+
 
             return {
                 success: true,

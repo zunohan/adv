@@ -22,7 +22,7 @@ const authMiddleware = async ({ context }, next) => {
         return next();
     }
     catch (error) {
-        throw new apollo_server_express_1.AuthenticationError("Bad request!...");
+        throw new apollo_server_express_1.AuthenticationError("You have no access...");
     }
 };
 exports.default = authMiddleware;
