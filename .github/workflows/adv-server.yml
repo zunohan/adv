@@ -1,24 +1,16 @@
 name: deploy adv
 on: [workflow_dispatch]
+
 jobs:
-    build:
-        name: Build
-        runs-on: ubuntu-latest
-        steps:
-            - name: executing remote ssh commands using password
-              uses: supnobita/ssh-action@master
-              with:
-                  host: 18.196.149.204
-                  username: ubuntu
-                  key: ${{ secrets.ADV_DEV_SECRET }}
-                  port: 22
-                  envs: GITHUB_RUN_NUMBER
-                  script: |
-                      cd code/
-                      rm -rf adv/
-                      git clone https://${{ secrets.ADV_DEV_TOKEN_SSH }}@github.com/zunohan/adv.git
-                      cd adv
-                      docker build -t adv:$GITHUB_RUN_NUMBER .
-                      docker stop adv || echo "OK"
-                      docker rm adv || echo "OK"
-                      docker run --name adv -p 6969:6969 adv:$GITHUB_RUN_NUMBER
+  checkout_and_build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - run: npm install
+      - run: npm run build
+      - run: DOCKER_BUILDKIT=1 docker build -t adv:$GITHUB_RUN_NUMBER .
+        
