@@ -1,4 +1,7 @@
 import { DataSource } from "typeorm"
+import { UserModel } from "../entities/user.model"
+import { CampaignModel } from "../entities/campaign.model"
+import { AdModel } from "../entities/ad.model"
 
 const initDatabase = async () => {
     try {
@@ -11,7 +14,7 @@ const initDatabase = async () => {
             database: process.env.DB_NAME,
             // url: process.env.DB_URL,
             synchronize: true,
-            entities: ["/src/entities/*.model.ts"],
+            entities: [UserModel, CampaignModel, AdModel],
         })
         await AppDataSource.initialize()
         console.log("🚀 Connect to POSTGRESQL - ADV inside docker 🚀")
