@@ -8,7 +8,7 @@ jobs:
             - name: executing remote ssh commands using password
               uses: supnobita/ssh-action@master
               with:
-                  host: 18.196.149.204
+                  host: 54.169.185.39
                   username: ubuntu
                   key: ${{ secrets.ADV_DEV_SECRET }}
                   port: 22
